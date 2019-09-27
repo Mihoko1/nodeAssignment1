@@ -62,9 +62,10 @@ app.get('/login', routes.index);//call for login page
 app.post('/login', user.login);//call for login post
 app.get('/feed', user.feed);//call for feed post
 app.post('/feed', user.feed);//call for feed post
-app.get('/dashboard', user.dashboard);//call for dashboard page after login
 app.get('/logout', user.logout);//call for logout
 app.get('/profile',user.profile);//to render users profile
+app.post('/profile',user.profile);//to render users profile
+app.get('/dashboard', user.dashboard);//call for dashboard page after login
 app.post('/dashboard',user.dashboard);//call for profile picture update 
 //Middleware
 app.listen(5000);

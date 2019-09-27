@@ -1,9 +1,5 @@
-
-
-   <% include header.ejs %>
+<% include header.ejs %>
    
-
-
 <div class="feed-container">
     <div class="box">
 	<div class="mainbox">
@@ -41,7 +37,7 @@
  
         <div class="sidebar">
 
-            <div class="feedProfile"><a class=""><% 
+            <div class="feedProfile"><a class="linkToDashboard" href="/dashboard"><% 
               if ( data[0].prof_pic_path != null ){ %><img src="<%= data[0].prof_pic_path %>" alt="profile pictuer"><% } else { %><img src= "../img/default-profile.jpg" alt="profile picture"><% } %></a>
             </div>
             <div>

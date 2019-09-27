@@ -105,9 +105,28 @@ exports.login = function(req, res){
 exports.feed = function(req, res){
    
     var message = "";
-     var userId = req.session.userId;
+    var userId = req.session.userId;
     
-     
+     if(userId == null){
+          res.redirect("/login");
+          return;
+       
+       }
+    
+        if(req.method == "POST"){
+
+            var sql = "UPDATE users SET prof_pic_path ='" + imgPath + "' WHERE id =" + userId;
+
+             var sql2="SELECT * FROM `users` WHERE `id`='"+userId+"'";
+
+            db.query(sql +";" sql2+ function(err, results) {
+                
+                 return res.render('feed.ejs',{data: results});
+                
+            }
+       
+       
+    }else{
       
     
        if(userId == null){
@@ -116,23 +135,24 @@ exports.feed = function(req, res){
        
        }
    
-      var sql="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id";  
+        var sql="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id";  
     
-    var userInfo="SELECT * FROM users WHERE id = " + userId;
+        var userInfo="SELECT * FROM users WHERE id = " + userId;
        
-      db.query(sql + ";"+ userInfo,function(err, results){  
-          
-          if(err){
-              
-              console.log(results);
-              console.log(results.length);
-             
-              message = "Error. Please Login again.";
-              
-          }
-          
-          return res.render('feed.ejs', {feedData:results[0],data: results[1], message: message});    
-       });      
+            db.query(sql + ";"+ userInfo,function(err, results){  
+
+              if(err){
+
+                  console.log(results);
+                  console.log(results.length);
+
+                  message = "Error. Please Login again.";
+
+              }
+
+            return res.render('feed.ejs',         {feedData:results[0],data: results[1], message: message});    
+        }); 
+    }
 };
 
 
@@ -217,12 +237,32 @@ exports.logout=function(req,res){
 exports.profile = function(req, res){
 
     var message = '';
-   var userId = req.session.userId;
+    var userId = req.session.userId;
        if(userId == null){
           res.redirect("/login");
           return;
        
        }
+        if(req.method == "POST"){
+            
+            var sql = "UPDATE users SET prof_pic_path ='" + imgPath + "' WHERE id =" + userId;
+
+             var sql2="SELECT * FROM `users` WHERE `id`='"+userId+"'";
+
+            db.query(sql +";" sql2+ function(err, results) {
+                
+                 return res.render('feed.ejs',{data: results});
+                
+            }
+        }
+
+            if(userId == null){
+                res.redirect("/login");
+            return;
+       
+                }
+   
+        }
         var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";          
         db.query(sql, function(err, result){  
             res.render('profile.ejs',{data:result});

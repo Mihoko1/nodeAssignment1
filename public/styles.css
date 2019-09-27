@@ -4,7 +4,7 @@ nav{
 }
 
 .siteName{
-    font: 16px;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -21,27 +21,31 @@ nav span{
     font-weight: bold;
     font-size: 30px;
 }
+/*
 .profile{
     width: 30px;
     height: 30px;
     object-fit: cover;
 }
+*/
 
 
 .profile img{
     width: 30px;
     height: 30px;
     object-fit: cover;
+    border-radius: 50%;
 }
 
 .navName{
-    display: block;
+    display: inline-block;
 } 
 
 .feedProfile img{
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
+    border-radius: 50%;
 }
 
 .feedProfile{
