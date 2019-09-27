@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Site</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    
+</head>
+<body>
+    <div class="container mt-5 col-sm-12" id="mainform">
+            <div id="signupbox" class="mainbox col-lg-4">
+                                                           
+                    <div class="card card-info card border border-info shadow-sm bg-white rounded">
+                        <div class="card-header text-white bg-info">
+                            <div class="card-title"><h3>Sign Up</h3></div>
+                            <div style="float:right; font-size: 85%; position: relative; top:-20px "><a id="signinlink" href="/" class="text-white">Sign In</a></div>
+                        </div> 
+                        <div class="card-body" >
+                            <form class="form-horizontal" role="form" method="post" action="/signup">
+                                <% if (message.length > 0) { %>
+                                <div class="alert alert-danger col-sm-12"><%= message %></div>
+                                <% } %>
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Error:</p>
+                                    <span></span>
+                                </div>
+                                    
+                                <div class="form-group ">
+                                    <label for="first_name" class="col-md-3 control-label">First Name</label>
+                                    <div class="col-lg-9 m-auto">
+                                        <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="last_name" class="col-md-3 control-label">Last Name</label>
+                                    <div class="col-lg-9 m-auto">
+                                        <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mob_no" class="col-md-3 control-label">Mobile Number</label>
+                                    <div class="col-lg-9 m-auto">
+                                        <input type="number" class="form-control" name="mob_no" placeholder="Mobile Number">
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                    <label for="user_name" class="col-md-3 control-label">User Name</label>
+                                    <div class="col-lg-9 m-auto">
+                                        <input type="text" class="form-control" name="user_name" placeholder="User Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-md-3 control-label">Password</label>
+                                    <div class="col-lg-9 m-auto">
+                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                    </div>
+                                </div>
+ 
+                                <div class="form-group">
+                                    <!-- Button -->                                       
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup" type="submit" class="btn btn-info pr-5 pl-5"><i class="icon-hand-right"></i> Sign Up</button>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </form>
+                         </div>
+                    </div>
+              
+                
+         </div>
+    </div>
+   
+</body>
+</html>
+ 

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Node.js Assignment - SNS </title>
+     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    
+    
+</head>
+<body>
+<nav class="bg-light text-dark">
+    <div class="d-flex ml-3 mr-3 ">
+      <div class="siteName mr-auto pr-5 pl-5 pt-3">FAKEBOOK</div>
+        <div class="p-2 pr-3 pl-3 pt-3"><a class="text-dark" href="/dashboard">Home</a></div>
+      <div class="p-2 pr-3 pl-3 pt-3 profile"><a class="navName text-dark mr-2" href= "/profile"><span class="navName"><% 
+          if ( data[0].prof_pic_path != null ){ %><img src="<%= data[0].prof_pic_path %>" alt="profile pictuer"><% } else { %><img src= "../img/default-profile.jpg" alt="profile picture"><% } %></span><span><%= data[0].first_name %></span></a></div>
+        <div class="p-2 pr-3 pl-3 pt-3"><a class="text-dark" href="/logout">Logout</a></div>
+    </div>
+</nav>
+    
+      

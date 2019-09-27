@@ -1,0 +1,137 @@
+nav{
+    height: 60px;
+    width: 100%;
+}
+
+.siteName{
+    font: 16px;
+    font-weight: bold;
+}
+
+
+nav a:hover{
+    
+}
+
+nav span{
+    margin: 0 5px;
+}
+
+.card-title h3{
+    font-weight: bold;
+    font-size: 30px;
+}
+.profile{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+
+
+.profile img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.navName{
+    display: block;
+} 
+
+.feedProfile img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.feedProfile{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+textarea #code {
+    width: 500px;
+    height: 200px;
+}
+
+.card{
+/*    border: 2px solid #000;*/
+    margin: 30px auto;
+    padding: 20px auto;
+}
+
+.feed-container{
+    width: 100%;
+    background-color: #efefef;
+}
+
+
+.box{
+    width: 90%;
+    display: grid;
+	grid-column-gap: 10px;
+    grid-template-columns: 3fr 1fr;
+    margin: 0 auto;  
+}
+
+.main{
+	padding: 20px;
+}
+.sidebar{
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: lightgray;
+}
+.main{
+	background-color: #efefef;
+}
+
+.tiles{
+	margin-bottom: 1em;
+}
+.cardContainder{
+	margin-bottom: 1em;
+	padding: 20px;
+	border-radius: 4px;
+	background-color: #fff;
+}
+.cardContainder p:not(:last-child){
+	margin-bottom: 1.5em;
+}
+ 
+.sidebar p{
+    display: inline-block;
+    text-align: left;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+
+
+@media screen and (min-width : 500px) { /* デスクトップ用CSS */
+	header{
+		flex-direction: row;
+	}
+	.container{
+		display: flex;
+	}
+	.sidebar{
+		width: 300px;
+	}
+	.main{
+		flex: 1;
+		order: 2;
+	}
+    .tiles{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.tiles li{
+		margin: 5px;
+		width: calc( 33.3% - 10px);
+	}
+}
