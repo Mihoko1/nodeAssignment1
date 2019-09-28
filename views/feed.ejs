@@ -36,12 +36,19 @@
 	   </div>
  
         <div class="sidebar">
+            <div class="userBox">
 
-            <div class="feedProfile"><a class="linkToDashboard" href="/dashboard"><% 
-              if ( data[0].prof_pic_path != null ){ %><img src="<%= data[0].prof_pic_path %>" alt="profile pictuer"><% } else { %><img src= "../img/default-profile.jpg" alt="profile picture"><% } %></a>
-            </div>
-            <div>
-                <p><%= data[0].first_name %></p><p><%= data[0].last_name %></p>
+                <div class="feedProfile">
+                    <a class="linkToDashboard" href="/dashboard">
+                       
+                        <% 
+                        if ( data[0].prof_pic_path != null ){ %><img src="<%= data[0].prof_pic_path %>" alt="profile pictuer"><% } else { %><img src= "../img/default-profile.jpg" alt="profile picture"><% } %>
+                       
+                    </a>
+                    
+                <div class="userName">
+                    <p><%= data[0].first_name %></p><p><%= data[0].last_name %></p>
+                </div>
             </div>
        </div>
     </div>

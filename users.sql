@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 27, 2019 at 03:58 AM
+-- Generation Time: Sep 28, 2019 at 01:13 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.8
 
@@ -62,7 +62,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `mob_no`, `user_name`, `password`, `prof_pic_path`) VALUES
-(1, 'Mihoko', 'S', 1234567890, 'miho123', 'miho123', '/img/upload_images/nU8IHhmLfSPKReOUUXCuG1Z6hej2.jpg'),
+(1, 'Mihoko', 'S', 1234567890, 'miho123', 'miho123', '/img/upload_images/beach.jpg'),
 (2, 'Miho', 'I', 1234567890, 'miho1234', 'miho1234', '/img/default-profile.jpg'),
 (3, 'aaa', 'aaaa', 88888888, 'aaaa@gmail.com', 'jjjjjjj', '/img/default-profile.jpg'),
 (4, 'Bbb', 'Bbb', 2121212121, 'bbb@test.com', 'bbb', '/img/default-profile.jpg'),

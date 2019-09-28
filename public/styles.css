@@ -29,6 +29,12 @@ nav span{
 }
 */
 
+.profMessage{
+    margin: 20px auto;
+    color: 'red';
+    font-weight: bold;
+}
+
 
 .profile img{
     width: 30px;
@@ -49,9 +55,6 @@ nav span{
 }
 
 .feedProfile{
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
     margin: 0 auto;
 }
 
@@ -75,7 +78,7 @@ textarea #code {
 .box{
     width: 90%;
     display: grid;
-	grid-column-gap: 10px;
+	grid-column-gap: 20px;
     grid-template-columns: 3fr 1fr;
     margin: 0 auto;  
 }
@@ -83,12 +86,42 @@ textarea #code {
 .main{
 	padding: 20px;
 }
+
 .sidebar{
     text-align: center;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: lightgray;
+    margin: 30px auto;
+/*    padding: 40px;*/
+/*    background-color: lightgray;*/
 }
+
+ 
+.sidebar p{
+    display: inline-block;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+
+.userBox{
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #fff;
+    border: 1px solid #BEBEBE;
+    border-radius: 5px;
+}
+
+.userName{
+    margin-top: 20px;
+}
+
+.userName p{
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .main{
 	background-color: #efefef;
 }
@@ -105,18 +138,10 @@ textarea #code {
 .cardContainder p:not(:last-child){
 	margin-bottom: 1.5em;
 }
- 
-.sidebar p{
-    display: inline-block;
-    text-align: left;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bolder;
-}
 
 
 
-@media screen and (min-width : 500px) { /* デスクトップ用CSS */
+@media screen and (min-width : 500px) { 
 	header{
 		flex-direction: row;
 	}

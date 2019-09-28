@@ -1,14 +1,16 @@
 <%- include header %>
 
 
+<div class="profMessage"><%= message %></div>
+
 
 <div class="card mb-3" style="max-width: 540px;">
   <div class="row no-gutters">
     <div class="col-md-4">
-        <a href="" >
-            <% if ( data[0].prof_pic != null ){ %><img class="card-img" src="<%= data[0].prof_pic_path %>" alt="profile pictuer" ><% } else { %><img class="card-img" src= "../img/default-profile.jpg" alt="profile picture" ><% } %>
+        <a>
+            <% if ( data[0].prof_pic_path != null ){ %><img class="card-img" src="<%= data[0].prof_pic_path %>" alt="profile pictuer" ><% } else { %><img class="card-img" src= "../img/default-profile.jpg" alt="profile picture" ><% } %>
         </a>
-        <form action="/feed" method="POST" encType="multipart/form-data">
+        <form action="/profile" method="POST" encType="multipart/form-data">
 
             <input type="file"
                id="avatar" name="avatar"
@@ -51,6 +53,8 @@
       </div>
     </div>
 </div>
+
+
 
 
  <%- include footer %>

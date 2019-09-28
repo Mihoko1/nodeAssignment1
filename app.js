@@ -2,15 +2,15 @@
 * Module dependencies.
 */
 var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , bodyParser=require("body-parser")
-,busboy = require("then-busboy")
-	,fileUpload = require('express-fileupload')
-  , path = require('path');
+    , routes = require('./routes')
+    , user = require('./routes/user')
+    , bodyParser=require("body-parser")
+    , busboy = require("then-busboy")
+    , fileUpload = require('express-fileupload')
+    , fs = require("fs")
+    , path = require('path');
 
   
-const fs = require("fs");
 //      multer: Node.js middleware for handling multipart/form-data.
 
 //var methodOverride = require('method-override');
@@ -53,7 +53,7 @@ app.use(fileUpload({
     tempFileDir : '/tmp/'
 }));
  
-// development only
+
  
 app.get('/', routes.index);//call for main index page
 app.get('/signup', user.signup);//call for signup page
