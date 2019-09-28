@@ -8,16 +8,11 @@ var express = require('express')
     , busboy = require("then-busboy")
     , fileUpload = require('express-fileupload')
     , fs = require("fs")
-    , path = require('path');
+    , path = require('path')
+    , session = require('express-session')
+    , app = express()
+    , mysql = require('mysql')
 
-  
-//      multer: Node.js middleware for handling multipart/form-data.
-
-//var methodOverride = require('method-override');
-var session = require('express-session');
-var app = express();
-var mysql = require('mysql');
-var bodyParser=require("body-parser");
 
 var connection = mysql.createConnection({
     user: 'root',
@@ -27,13 +22,8 @@ var connection = mysql.createConnection({
     multipleStatements: true
 });
 
-
- 
 connection.connect();
- 
 global.db = connection;
-
-
  
 // all environments
 app.set('port', process.env.PORT || 5000);
@@ -52,8 +42,6 @@ app.use(fileUpload({
     useTempFiles : true,
     tempFileDir : '/tmp/'
 }));
- 
-
  
 app.get('/', routes.index);//call for main index page
 app.get('/signup', user.signup);//call for signup page

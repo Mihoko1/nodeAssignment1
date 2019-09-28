@@ -9,21 +9,21 @@
             <% if (feedData.length > 0){ 
                 for (var i = 0; i < feedData.length; i++) { %>
            
-                <a href="dashboard/:"<%= feedData[i].user_id %>>
                     <div class="card mb-3 feedCard"> 
                     
-                    <div class="card-title">
-                        <div class="titleContainer">
-                            <div class="pic">
-                                <a src="/dashboard"><img src="<%= feedData[i].prof_pic_path %>">
-                                </a>
-                            </div>
-                             <div class="name"><%= feedData[i].first_name %></div> <div class="name"><%= feedData[i].last_name %>
-                            </div>
-                        </div>
-                    </div>
-                    
+                        <div class="card-title">
+                            <a href = "dashboard/<%= feedData[i].user_id %> ">
+                            <div class="titleContainer">
+                                <div class="pic">
+                                    <img src="<%= feedData[i].prof_pic_path %>">
 
+                                </div>
+                                <div class="name"><%= feedData[i].first_name %></div> <div class="name"><%= feedData[i].last_name %>
+                                </div>
+
+                            </div>
+                            </a>
+                        </div>
                     <% if(feedData[i].feed_img){ 
 
                         var buf = new Buffer(feedData[i].feed_img, "binary");
@@ -115,7 +115,6 @@
                             </div>
                         </div>
                         </div>
-                    </a>
                 <% }; 
             }; %>
 	   </div>
@@ -124,7 +123,7 @@
             <div class="userBox">
 
                 <div class="feedProfile">
-                    <a class="linkToDashboard" href="/dashboard/:"<%= userId %>>
+                    <a class="linkToDashboard" href="dashboard/<%= userId %>">
                        
                         <% 
                         if ( data[0].prof_pic_path != null ){ %><img src="<%= data[0].prof_pic_path %>" alt="profile pictuer"><% } else { %><img src= "../img/default-profile.jpg" alt="profile picture"><% } %>

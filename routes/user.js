@@ -160,10 +160,11 @@ exports.feed = function(req, res){
 
 //-----------------------------------------------dashboard page ----------------------------------------------
 
-exports.dashboard = function(req, res, next){
+exports.dashboard = function(req, res){
            
     var userId = req.session.userId;
     var id =req.params.id;
+    console.log("id = " + id);
        if(userId == null){
           res.redirect("/login");
           return;
@@ -173,10 +174,19 @@ exports.dashboard = function(req, res, next){
      }
         var sql = "SELECT * FROM users WHERE id= "+ userId; 
         
-        var sql2="SELECT c.feed_id, c.feed_img, c.feed_text, c.user_id, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id ="  + id + "order by c.feed_date DESC";  
+        var sql2="SELECT * FROM feed WHERE user_id = " +id+ " order by feed_date DESC";  
 
        db.query(sql +";"+ sql2 , function(err, results){
-          return res.render('dashboard.ejs', {data:results[0], feed:result[1]});    
+           
+            
+              if(err){
+
+                  console.log(results);
+                 console.log("results[0]");
+                  
+
+              }
+          return res.render('dashboard.ejs', {data:results[0], feedData:results[1]});    
        }); 
   
 

@@ -1,26 +1,140 @@
-<%- include header %>
+<% include header.ejs %>
     
     <div class="jumbotron">
         <div class="dashboard-containder">
             <div class="dashboard-userInfo">
                 <div>
                     <a>
-                        <img src="<%= feed[0].prof_pic_path %>" alt="profile pictuer">
+                        <img src="<%= data[0].prof_pic_path %>" alt="profile pictuer">
                     </a>
                 </div>
             </div>
             <div class="dashboard-userInfo">
                 <h1>
-                    <span><%= feed[0].first_name%></span>
+                    <span><%= data[0].first_name %></span>
                     <span>
-                        <%= feed[0].last_name %>
+                        <%= data[0].last_name %>
                     </span>
                 </h1>
-                    <p><%= feed.length %></p>
+                    <p><%= feedData.length %></p>
                     <p class="bold">posts</p>
                 <p>
             </div>
         </div>
+        <div class="mainbox">
+            
+            <% if (feedData.length > 0){ 
+                for (var i = 0; i < feedData.length; i++) { %>
+           
+                    <div class="card mb-3 feedCard"> 
+                    
+                        <div class="card-title">
+                            <a href = "dashboard/<%= feedData[i].user_id %> ">
+                            <div class="titleContainer">
+                                <div class="pic">
+                                    <img src="<%= feedData[i].prof_pic_path %>">
+
+                                </div>
+                                <div class="name"><%= feedData[i].first_name %></div> <div class="name"><%= feedData[i].last_name %>
+                                </div>
+
+                            </div>
+                            </a>
+                        </div>
+                    <% if(feedData[i].feed_img){ 
+
+                        var buf = new Buffer(feedData[i].feed_img, "binary");
+
+                        var buffer = buf.toString('base64');
+
+                    };%>
+                        
+                        <div class="card-image">
+                            <img src="data:image/png;base64,<%= buffer %>" class="card-img-top " >
+                        </div>
+                        <div class="card-body">
+                            <div class="feedText">
+                                <p class="card-text">           <%=feedData[i].feed_text %></p>
+                            </div>
+                            <div class="feedText">
+                                <p class="card-text">
+                                    
+                                    
+                                    <% 
+                                        
+                                        var pos = new Date(feedData[i].feed_date);
+                                    
+                                        var py = pos.getFullYear();
+                                        var pmon = ("00" + (pos.getMonth()+1)).slice(-2);
+                                        var pd = ("00" + pos.getDate()).slice(-2);
+                                        var ph = ("00" + pos.getHours()).slice(-2);
+                                    
+                                        var pmin = ("00" + pos.getMinutes()).slice(-2);
+                                    
+                                        var ps = ("00" + pos.getSeconds()).slice(-2);
+                                    
+
+                                    
+                    
+                                        var now = new Date ();
+                                        var ny = now.getFullYear();
+                                        var nmon = ("00" + (now.getMonth()+1)).slice(-2);
+                                        var nd = ("00" + now.getDate()).slice(-2);
+                                        var nh = ("00" + now.getHours()).slice(-2);
+                                    
+                                        var nmin = ("00" + now.getMinutes()).slice(-2);
+                                    
+                                        var ns = ("00" + now.getSeconds()).slice(-2);
+                                    
+                                    
+                                    
+                                    
+                                    var when = '';
+
+                                    if (ny - py >= 24){
+                                        when = ny - py + " years ago";
+                                        
+                                    }else if (ny - py >= 12){
+                                        when = ny - py + " year ago";
+                                        
+                                    }else if (nmon - pmon === 1 ){
+                                        when = "1 month ago";
+                                        
+                                    } else if (nmon - pmon > 1) {
+                                      when = nmon - pmon + ' months ago';
+                                        
+                                    } else if (nd - pd === 1) {
+                                      when = '1 day ago';
+                                        
+                                    } else if (nd - pd > 1) {
+                                      when = nd - pd + ' days ago';
+                                        
+                                    } else if (nh - ph === 1) {
+                                      when = nh - ph + ' hours ago';
+                                        
+                                    } else if (nh - ph > 1) {
+                                      when = '1 hour ago';
+                                          
+                                    } else if (nmin - pmin === 1) {
+                                      when = '1 minute ago';
+                                        
+                                    }else if (nmin - pmin > 1) {
+                                      when = nmin - pmin + ' minutes ago';
+                                        
+                                    } else {
+                                     when = 'Just now';
+                                    };
+                                    
+                                    %>
+                                    
+                                    <small class="text-muted"><%= when %></small>
+                                </p>
+                            </div>
+                        </div>
+                        </div>
+                <% }; 
+            }; %>
+	   </div>
     </div>
     
-<%- include footer %>
+<% include footer.ejs %>
