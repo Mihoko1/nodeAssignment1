@@ -139,6 +139,44 @@ textarea #code {
 	margin-bottom: 1.5em;
 }
 
+.card-title{
+height: 50px;
+}
+
+.card-image img{
+    border-radius: 0;
+}
+.titleContainer{
+    margin-left: 25px;
+    height: 50px;
+    line-height: 50px;
+    
+}
+
+.titleContainer div{
+    display: inline-block; vertical-align: middle; 
+}
+
+.pic img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.name{
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.name:first-of-type{
+     margin-right: 10px;
+}
+
+
+
+
 
 
 @media screen and (min-width : 500px) { 

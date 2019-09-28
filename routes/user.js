@@ -135,7 +135,7 @@ exports.feed = function(req, res){
        
        }
    
-        var sql="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id";  
+        var sql="SELECT c.feed_id, c.feed_img, c.feed_text, c.user_id, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id order by c.feed_date DESC";  
     
         var userInfo="SELECT * FROM users WHERE id = " + userId;
        
