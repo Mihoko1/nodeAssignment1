@@ -1,11 +1,26 @@
 <%- include header %>
     
     <div class="jumbotron">
-        <h1>Welcome</h1>
-        <p>Hello Dashboard</p>
-        <p>
-        <a class="btn btn-lg btn-primary" href="/profile" role="button">Profile view »</a>
-        </p>
+        <div class="dashboard-containder">
+            <div class="dashboard-userInfo">
+                <div>
+                    <a>
+                        <img src="<%= feed[0].prof_pic_path %>" alt="profile pictuer">
+                    </a>
+                </div>
+            </div>
+            <div class="dashboard-userInfo">
+                <h1>
+                    <span><%= feed[0].first_name%></span>
+                    <span>
+                        <%= feed[0].last_name %>
+                    </span>
+                </h1>
+                    <p><%= feed.length %></p>
+                    <p class="bold">posts</p>
+                <p>
+            </div>
+        </div>
     </div>
     
 <%- include footer %>

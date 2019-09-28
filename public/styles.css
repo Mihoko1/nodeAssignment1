@@ -21,6 +21,11 @@ nav span{
     font-weight: bold;
     font-size: 30px;
 }
+
+.nameContainer{
+    display: inline-block;
+    margin-right: 5px;
+}
 /*
 .profile{
     width: 30px;
@@ -173,6 +178,28 @@ height: 50px;
 .name:first-of-type{
      margin-right: 10px;
 }
+
+.dashboard-containder{
+    width: 80%;
+    display: grid;
+    column-gap: 30px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.dashboard-userInfo img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+
+
+
 
 
 

@@ -65,7 +65,6 @@ app.post('/feed', user.feed);//call for feed post
 app.get('/logout', user.logout);//call for logout
 app.get('/profile',user.profile);//to render users profile
 app.post('/profile',user.profile);//to render users profile
-app.get('/dashboard', user.dashboard);//call for dashboard page after login
-app.post('/dashboard',user.dashboard);//call for profile picture update 
-//Middleware
+app.get('/dashboard/:id', user.dashboard);//call for dashboard 
+
 app.listen(5000);

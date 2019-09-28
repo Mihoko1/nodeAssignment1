@@ -150,7 +150,7 @@ exports.feed = function(req, res){
 
               }
 
-            return res.render('feed.ejs',         {feedData:results[0],data: results[1], message: message});    
+            return res.render('feed.ejs',         {feedData:results[0],data: results[1], message: message, userId: userId});    
         }); 
     }
 };
@@ -158,82 +158,38 @@ exports.feed = function(req, res){
 
 
 
-//-----------------------------------------------dashboard page functionality----------------------------------------------
+//-----------------------------------------------dashboard page ----------------------------------------------
 
 exports.dashboard = function(req, res, next){
            
     var userId = req.session.userId;
+    var id =req.params.id;
        if(userId == null){
           res.redirect("/login");
           return;
-       
        }
-
-
-    if(req.method == "POST"){
-    
-    
-	  if (!req.files || Object.keys(req.files).length === 0) 
-          
-        return res.status(400).send('No files were uploaded.');
-    
- 
-		var file = req.files.avatar;
-		var img_name=file.name;
- 
-        console.log(img_name);
+     if (req.query.id){
+         id=req.query.id;
+     }
+        var sql = "SELECT * FROM users WHERE id= "+ userId; 
         
-        if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
-                                 
-         
-            var imgPath ='/img/upload_images/'+img_name;
-            
-            file.mv(imgPath, function(err) {
-                             
-	           if (err)
-                   console.log("errorA:" + err);
-                   return res.status(500).send(err);
-                  
-                
-                var sql = "UPDATE users SET prof_pic_path ='" + imgPath + "' WHERE id =" + userId;
-                
+        var sql2="SELECT c.feed_id, c.feed_img, c.feed_text, c.user_id, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id ="  + id + "order by c.feed_date DESC";  
 
-                db.query(sql +";" + function(err, results) {
-                    
-                    var sql2="SELECT * FROM `users` WHERE `id`='"+userId+"'";
-                    
-                    db.query(sql2, function(err, results) {
-                    
-                        return res.render('dashboard.ejs',{data: results});
-                    });
-                        
-                });
-              
-	       });
-        } else {
-            message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-            return res.render('dashboard.ejs',{message: message});
-        }
-      };  
-    
-    if(req.method == "GET"){
-    
-       var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";
-
-       db.query(sql, function(err, results){
-          return res.render('dashboard.ejs', {data:results});    
+       db.query(sql +";"+ sql2 , function(err, results){
+          return res.render('dashboard.ejs', {data:results[0], feed:result[1]});    
        }); 
-    };
+  
 
 };
     
     
-//------------------------------------logout functionality----------------------------------------------
+//------------------------------------logout ----------------------------------------------
 exports.logout=function(req,res){
    req.session.destroy(function(err) {
       res.redirect("/login");
    })
 };
+
 //--------------------------------render user profile --------------------------------
 exports.profile = function(req, res){
     
@@ -250,40 +206,18 @@ exports.profile = function(req, res){
             if (!req.files || Object.keys(req.files).length === 0) {
           
             return res.status(400).send('No files were uploaded.');
-    
             }
+    
             
             var file = req.files.avatar;
             var img_name=file.name;
-            
-            var pathStr =__dirname.lastIndexOf('/');
-            
-            console.log(__dirname);
-            console.log("pathStr " + pathStr);
-            
-            var imgPath = __dirname.substr(0, pathStr)
- 
-            console.log(imgPath);
-            console.log();
-            
-            var pathName= imgPath+"/public/img/upload_images/" + img_name;
-            
-            console.log("pathName:" + pathName);
-            if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
                 
-           
                 
-                file.mv(pathName, function(err) {
-
-                   if (err){
-                       console.log("errorA:" + err);
-                       return res.status(500).send(err);
-                   }
-
-                        // profile picture update
-                        var sql = "UPDATE users SET prof_pic_path ='/img/upload_images/"  +img_name + "' WHERE id =" + userId;
-                    
-                        // Get user data
+            if(img_name == "" || img_name == null){ //if no image is selected and submit is clicked
+                
+                console.log("no prof pic updated");
+                
+                // Get user data
                         var sql2="SELECT * FROM `users` WHERE `id`="+userId;
                     
                         // Get feed data
@@ -291,32 +225,53 @@ exports.profile = function(req, res){
                     
                     console.log("sql"  +sql );
                     
-                        db.query(sql+";"+sql2+";"+feedData, function(err, result){  
+                        db.query(sql2+";"+feedData, function(err, result){  
                             
-                            return res.render('feed.ejs',{data:result[1], feedData:result[2], message: message});
+                            return res.render('feed.ejs',{data:result[0], feedData:result[1], message: message});
                         });
                     
-//                    var sql2="SELECT * FROM `users` WHERE `id`="+userId;
-//                                
-//                            db.query(sql2,function(err, results) {
+            }else{ // when an image is selected and submit is clicked.
+               
+                var pathStr =__dirname.lastIndexOf('/');
 
-//                            return return res.render('feed.ejs',         {feedData:results[0],data: results[1], message: message});   
-//                            return res.render('feed.ejs', {data: results, message: message}); 
-//
-//                            });
-                });
-           
-                
-            } else {
-                message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-                return res.render('profile.ejs',{message: message});
+                var imgPath = __dirname.substr(0, pathStr)
+
+                var pathName= imgPath+"/public/img/upload_images/" + img_name;
+
+
+                if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
+
+                    file.mv(pathName, function(err) {
+
+                       if (err){
+                           console.log("errorA:" + err);
+                           return res.status(500).send(err);
+                       }
+
+                        // profile picture update
+                        var sql = "UPDATE users SET prof_pic_path ='/img/upload_images/"  +img_name + "' WHERE id =" + userId;
+
+                        // Get user data
+                        var sql2="SELECT * FROM `users` WHERE `id`="+userId;
+
+                        // Get feed data
+                        var feedData="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id"; 
+                        db.query(sql+";"+sql2+";"+feedData, function(err, result){  
+
+                            return res.render('feed.ejs',{data:result[1], feedData:result[2], message: message});
+                        });
+                    });
+                            
+                 
+                } else {
+                    message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
+                    return res.render('profile.ejs',{message: message});
+                }
+            
             }
         
+        }else{  //GET
             
-        
-        }else{  
-            console.log("from header pic");
-            console.log("userId :" + userId);
             var sql="SELECT * FROM `users` WHERE `id`="+userId; 
             
             console.log("sql: "+ sql);
@@ -328,7 +283,7 @@ exports.profile = function(req, res){
            });
         
         };
-           
+      
 };
 
 
