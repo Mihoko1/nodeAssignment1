@@ -180,11 +180,11 @@ exports.dashboard = function(req, res){
            
             
               if(err){
-                  console.log(results);
+                  console.log('error-dash'+ results);
                  console.log("results[0]");
                   
               }
-          return res.render('dashboard.ejs', {data:results[0], feedData:results[1]});    
+          return res.render('dashboard.ejs', {data:results[0], feedData:results[1],userId:userId});    
        }); 
   
 
@@ -235,7 +235,7 @@ exports.profile = function(req, res){
                     
                         db.query(sql2+";"+feedData, function(err, result){  
                             
-                            return res.render('feed.ejs',{data:result[0], feedData:result[1], message: message});
+                            return res.render('feed.ejs',{data:result[0], feedData:result[1], message: message,userId:userId});
                         });
                     
             }else{ // when an image is selected and submit is clicked.
