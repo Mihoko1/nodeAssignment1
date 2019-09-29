@@ -8,9 +8,12 @@ nav{
     font-weight: bold;
 }
 
+nav a{
+    text-decoration: none !important
+}
 
-nav a:hover{
-    
+.siteName a{
+    text-decoration: none !important;
 }
 
 nav span{
@@ -74,6 +77,10 @@ textarea #code {
     padding: 20px auto;
 }
 
+.feedCard a{
+    text-decoration: !important
+}
+
 .feed-container{
     width: 100%;
     background-color: #efefef;
@@ -127,6 +134,21 @@ textarea #code {
     font-weight: bold;
 }
 
+.post-container{
+    width: 80%;
+    margin: 20px auto;
+}
+
+.card-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+}
+
+.card-border{
+     border: 1px solid #BEBEBE;
+    border-radius: 5px;
+}
+
 .main{
 	background-color: #efefef;
 }
@@ -162,6 +184,10 @@ height: 50px;
     display: inline-block; vertical-align: middle; 
 }
 
+.nameLink{
+    text-decoration: none !important
+}
+
 .pic img{
     width: 40px;
     height: 40px;
@@ -171,7 +197,6 @@ height: 50px;
 
 .name{
     display: inline-block;
-    margin-right: 10px;
     font-weight: bold;
 }
 
@@ -182,19 +207,29 @@ height: 50px;
 .dashboard-containder{
     width: 80%;
     display: grid;
+    margin: 0 auto;
     column-gap: 30px;
     grid-template-columns: 1fr 1fr;
+    
 }
 
+
 .dashboard-userInfo img{
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 50%;
+    vertical-align: middle;
 }
 
 .bold{
     font-weight: bold;
+}
+
+
+.postCount p{
+    display: inline-block;
+    font-size: 18px;
 }
 
 

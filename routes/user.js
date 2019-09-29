@@ -174,17 +174,15 @@ exports.dashboard = function(req, res){
      }
         var sql = "SELECT * FROM users WHERE id= "+ userId; 
         
-        var sql2="SELECT * FROM feed WHERE user_id = " +id+ " order by feed_date DESC";  
+         var sql2 ="SELECT feed.feed_id, feed.feed_img, feed.feed_text, feed.user_id, feed.feed_date, users.first_name, users.last_name, users.prof_pic_path FROM users INNER JOIN feed ON feed.user_id = users.id  WHERE users.id = "+ id + " order by feed.feed_date DESC";  
 
        db.query(sql +";"+ sql2 , function(err, results){
            
             
               if(err){
-
                   console.log(results);
                  console.log("results[0]");
                   
-
               }
           return res.render('dashboard.ejs', {data:results[0], feedData:results[1]});    
        }); 

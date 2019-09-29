@@ -12,13 +12,13 @@
                     <div class="card mb-3 feedCard"> 
                     
                         <div class="card-title">
-                            <a href = "dashboard/<%= feedData[i].user_id %> ">
+                            <a class="nameLink" href = "dashboard/<%= feedData[i].user_id %> ">
                             <div class="titleContainer">
                                 <div class="pic">
                                     <img src="<%= feedData[i].prof_pic_path %>">
 
                                 </div>
-                                <div class="name"><%= feedData[i].first_name %></div> <div class="name"><%= feedData[i].last_name %>
+                                <div class="name text-dark ml-1 mr-1"><%= feedData[i].first_name %></div> <div class="name text-dark"><%= feedData[i].last_name %>
                                 </div>
 
                             </div>
@@ -131,7 +131,7 @@
                     </a>
                     
                     <div class="userName">
-                        <p><%= data[0].first_name %></p><p><%= data[0].last_name %></p>
+                        <p class="mr-2"><%= data[0].first_name %></p><p><%= data[0].last_name %></p>
                     </div>
                 </div>
             </div>
