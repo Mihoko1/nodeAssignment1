@@ -53,6 +53,6 @@ app.post('/feed', user.feed);//call for feed post
 app.get('/logout', user.logout);//call for logout
 app.get('/profile',user.profile);//to render users profile
 app.post('/profile',user.profile);//to render users profile
-app.get('/dashboard/:id', user.dashboard);//call for dashboard 
+app.get('/timeline/:id', user.timeline);//call for timeline 
 
 app.listen(5000);

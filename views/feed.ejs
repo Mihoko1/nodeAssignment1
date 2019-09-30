@@ -5,14 +5,47 @@
     <div class="box">
         
 	   <div class="mainbox">
-            
-            <% if (feedData.length > 0){ 
-                for (var i = 0; i < feedData.length; i++) { %>
+           <form class="createPost" name= "formPost" action="/feed" method="POST" encType="multipart/form-data">
+                <div class="card card-border mb-3">
+                    
+                    <div class="card-header bg-light border-secondary"><span>Create Post</span>
+                        
+                    <%
+                        if(message != "" || message != null){
+                            %>
+                        <span class="alert">
+                        <%= message %>
+                        </span>
+                        <%
+                        }    
+                        
+                    %>
+                    </div>
+
+                    <textarea class="card-text thread-text" id="status" rows="5" name="postText"></textarea>   
+
+                    <div class="card-footer bg-transparent border-secondary">
+
+
+                        <input type="file" name="imgFile" accept="image/png, image/jpeg" Value="Photo" style="overflow: hidden">
+
+
+                        <input class="btn btn-large btn-info " type="submit" id="posting" value="Post" />
+                
+                    </div>
+                </div>
+           
+           
+           </form>
+           
+            <div class="postsContainer"> 
+                <% if (feedData.length > 0){ 
+                    for (var i = 0; i < feedData.length; i++) { %>
            
                     <div class="card mb-3 feedCard"> 
                     
                         <div class="card-title">
-                            <a class="nameLink" href = "dashboard/<%= feedData[i].id %> ">
+                            <a class="nameLink" href = "timeline/<%= feedData[i].user_id %> ">
                             <div class="titleContainer">
                                 <div class="pic">
                                     <img src="<%= feedData[i].prof_pic_path %>">
@@ -24,16 +57,9 @@
                             </div>
                             </a>
                         </div>
-                    <% if(feedData[i].feed_img){ 
-
-                        var buf = new Buffer(feedData[i].feed_img, "binary");
-
-                        var buffer = buf.toString('base64');
-
-                    };%>
                         
                         <div class="card-image">
-                            <img src="data:image/png;base64,<%= buffer %>" class="card-img-top " >
+                            <img src="<%= feedData[i].feed_img %>" class="card-img-top " >
                         </div>
                         <div class="card-body">
                             <div class="feedText">
@@ -114,16 +140,17 @@
                                 </p>
                             </div>
                         </div>
-                        </div>
-                <% }; 
-            }; %>
+                            </div>
+                    <% }; 
+                }; %>
+           </div>
 	   </div>
  
         <div class="sidebar">
             <div class="userBox">
 
                 <div class="feedProfile">
-                    <a class="linkToDashboard" href="dashboard/<%= userId %>">
+                    <a class="linkToTimeline" href="timeline/<%= userId %>">
                        
                         <% 
                         if ( data[0].prof_pic_path != null ){ %><img src="<%= data[0].prof_pic_path %>" alt="profile pictuer"><% } else { %><img src= "../img/default-profile.jpg" alt="profile picture"><% } %>
@@ -139,4 +166,5 @@
        </div>
   
 </div>
+
     <%- include footer %>

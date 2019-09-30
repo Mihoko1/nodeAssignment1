@@ -3,6 +3,10 @@ nav{
     width: 100%;
 }
 
+.logo{
+    margin: 50px auto;
+}
+
 .siteName{
     font-size: 25px;
     font-weight: bold;
@@ -18,6 +22,11 @@ nav a{
 
 nav span{
     margin: 0 5px;
+}
+
+.loginContainer{
+    width: 100%;
+    margin: auto;
 }
 
 .card-title h3{
@@ -92,6 +101,16 @@ textarea #code {
 	padding: 20px;
 }
 
+.thread-text{
+    border: 0;
+    resize: none;
+    -webkit-appearance:none;
+    width: 100%;
+    padding: 5px 15px;
+    outline: none;
+}
+
+
 .sidebar{
     text-align: center;
     margin: 30px auto;
@@ -106,6 +125,7 @@ textarea #code {
     font-size: 16px;
     font-weight: bolder;
 }
+
 
 
 .userBox{
@@ -130,11 +150,14 @@ textarea #code {
 .post-container{
     width: 80%;
     margin: 20px auto;
+    text-align: center;
 }
 
 .card-container{
     display: grid;
-    grid-template-columns: repeat(auto-fill, 300px);
+    grid-template-columns: repeat(auto-fill, 250px);
+    grid-column-gap: 20px;
+    justify-content: center;
 }
 
 .card-border{
@@ -234,7 +257,7 @@ height: 50px;
      margin-right: 10px;
 }
 
-.dashboard-containder{
+.timeline-containder{
     width: 80%;
     display: grid;
     margin: 0 auto;
@@ -244,7 +267,7 @@ height: 50px;
 }
 
 
-.dashboard-userInfo img{
+.timeline-userInfo img{
     width: 200px;
     height: 200px;
     object-fit: cover;
@@ -262,11 +285,9 @@ height: 50px;
     font-size: 18px;
 }
 
-
-
-
-
-
+.alert{
+    color:red;
+}
 
 
 
@@ -293,4 +314,11 @@ height: 50px;
 		margin: 5px;
 		width: calc( 33.3% - 10px);
 	}
+    .profImageBox{
+        text-align:center;
+    }
+    .uploadBtns{
+        text-align:center;
+        margin-right: 20px;
+    }
 }
