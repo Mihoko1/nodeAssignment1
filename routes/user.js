@@ -40,7 +40,7 @@ exports.signup = function(req, res){
               var query = db.query(sql, function(err, result) {
 
                  message = "Succesfully! Your account has been created.";
-                 res.render('signup.ejs',{message: sql});
+                 res.render('signup.ejs',{message: message});
               });
             }
 
@@ -107,7 +107,7 @@ exports.feed = function(req, res){
        }
         if(req.method == "POST"){
             
-            if (!req.files || Object.keys(req.files).length === 0) {
+            if (!req.files || Object.keys(req.files).length == 0) {
           
             return res.status(400).send('No files were uploaded.');
             }
@@ -129,19 +129,25 @@ exports.feed = function(req, res){
                 console.log("no prof pic updated");
                 
                 // Get user data
-                        var sql2="SELECT * FROM `users` WHERE `id`="+userId;
+                        var sql="SELECT * FROM `users` WHERE `id`="+userId;
                     
                         // Get feed data
-                        var feedData="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id order by feed.feed_date DESC";  
+                        var feedData="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id order by c.feed_date DESC";  
                     
                     console.log("sql"  +sql );
                     
-                        db.query(sql2+";"+feedData, function(err, result){  
+                        db.query(sql+";"+feedData, function(err, result){  
                             
-                            res.render('feed.ejs',{data:result[0], feedData:result[1],message: message, userId:userId});
+                           res.render('feed.ejs',{data:result[0], feedData:result[1],message: message, userId:userId});
                         });
+                
+                console.log("feedData"+ feedData);
+                
+                 console.log("data"+ feedData);
                     
             }else{ // when an image is selected and text is filled 
+                
+                console.log("post pic ");
                 
                 message = "";
                
@@ -164,10 +170,23 @@ exports.feed = function(req, res){
                         
                         var sql = "INSERT INTO feed (feed_img, feed_text, user_id) VALUES ('"+ path + "','" + post + "','"+ userId +"')";
                         
-                         // Get feed data
-                        var feedData="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id order by feed.feed_date DESC"; 
                         
-                        var sql2="SELECT * FROM `users` WHERE `id`='"+userId+"'";
+                         db.query(sql , function(err, results) {
+                             if(err){
+                                
+                            }
+                             
+                             res.render('feed.ejs',{
+//                             feedData: results[0], data: results[1], message: message, userId: userId});
+                            
+                           feedData:results[0],data: results[1], message: message, userId: userId}); 
+                        });    
+                             
+                        
+                         // Get feed data
+                        var feedData="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id order by c.feed_date DESC"; 
+                        
+                        var sql2="SELECT * FROM `users` WHERE `id`="+userId;
 
                         db.query(sql +";" + feedData +";" + sql2, function(err, results) {
                         
@@ -177,9 +196,12 @@ exports.feed = function(req, res){
                                  console.log("2:"+sql2);
                             }
                         
-                         res.render('feed.ejs',{feedData: results[1], data: results[2], message: message, userId: userId});
+                         res.render('feed.ejs',{
+//                             feedData: results[0], data: results[1], message: message, userId: userId});
+                            
+                           feedData:results[0],data: results[1], message: message, userId: userId}); 
                         });          
-                    });  
+                    }); 
              } 
     }else{
       
@@ -284,7 +306,7 @@ exports.profile = function(req, res){
                         var sql2="SELECT * FROM `users` WHERE `id`="+userId;
                     
                         // Get feed data
-                        var feedData="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id order by feed.feed_date DESC";  
+                        var feedData="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id order by c.feed_date DESC";  
                     
                     console.log("sql"  +sql );
                     
@@ -318,7 +340,7 @@ exports.profile = function(req, res){
                         var sql2="SELECT * FROM `users` WHERE `id`="+userId;
 
                         // Get feed data
-                        var feedData="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id order by feed.feed_date DESC"; 
+                        var feedData="SELECT c.feed_id, c.feed_img, c.feed_text, c.feed_date, a.first_name, a.last_name, a.prof_pic_path FROM feed AS c, users AS a WHERE c.user_id = a.id order by c.feed_date DESC"; 
                         db.query(sql+";"+sql2+";"+feedData, function(err, result){  
 
                             return res.render('feed.ejs',{data:result[1], feedData:result[2], message: message});
